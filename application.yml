@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/search_engine?useSSL=false&useUnicode=true&characterEncoding=utf8
+      &serverTimezone=UTC
+    username: root
+    password: 123456789
+  jpa:
+    hibernate:
+      ddl-auto: none
+---
+spring:
+   config:
+     activate:
+       on-profile: default
+user-agent: HeliontSearchBot
+pathToInterface: /admin
+sites:
+   - url: https://volochek.life
+     name: Волочек
+   - url: http://radiomv.ru
+     name: Милицейская волна
+   - url: http://www.playback.ru
+     name: Playback
+   - url: https://ipfran.ru
+     name: Институт прикладной физики
+   - url: https://dimonvideo.ru
+     name: Все для мобильных устройств
+   - url: https://nikoartgallery.com
+     name: Галерея Никогосяна
+   - url: https://et-cetera.ru/mobile
+     name: Театр Калягина
+   - url: https://www.lutherancathedral.ru
+     name: Кафедральный собор
+   - url: https://dombulgakova.ru
+     name: Дом Булгакова
+   - url: https://www.svetlovka.ru
+     name: Светловка
+---
+spring:
+  profiles:
+    active:
+      default

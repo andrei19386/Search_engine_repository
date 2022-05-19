@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="dictionary-reader-1.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/local-maven-repo/dictionary-reader-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/local-maven-repo/english-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/local-maven-repo/morph-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/local-maven-repo/morphology-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/local-maven-repo/russian-1.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
