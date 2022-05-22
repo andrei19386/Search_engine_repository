@@ -54,6 +54,13 @@ class ReferenceFinderTest extends TestCase {
         SiteController.setUserAgent("SearchBot");
     }
 
+    @Override
+    protected void tearDown() throws Exception {
+        connection.cleanDB();
+        String sql = "TRUNCATE TABLE search_engine.site";
+        jdbcTemplate.execute(sql);
+    }
+
     /**
      * @throws Exception
      * Эта функция предназначена для тестирования поиска дочерних ссылок на страницу
@@ -71,6 +78,7 @@ class ReferenceFinderTest extends TestCase {
             boolean expected = true;
             assertEquals(expected,actual);
         }
+        tearDown();
     }
 
     /**
@@ -87,6 +95,7 @@ class ReferenceFinderTest extends TestCase {
             String expected = "Skillbox – образовательная платформа с онлайн-курсами.";
             assertEquals(expected,actual);
         }
+        tearDown();
     }
 
     /**
