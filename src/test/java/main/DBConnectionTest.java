@@ -77,6 +77,12 @@ class DBConnectionTest extends TestCase {
 
     }
 
+    @Override
+    protected void tearDown() throws Exception {
+        connection.cleanDB();
+        String sql = "TRUNCATE TABLE search_engine.site";
+        jdbcTemplate.execute(sql);
+    }
 
     @Test
     void getIdByPath() throws Exception {
@@ -84,7 +90,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getIdByPath("/",1);
         int expected = 1;
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -94,7 +100,7 @@ class DBConnectionTest extends TestCase {
         int expected = 2;
 
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -103,7 +109,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getFrequencyByLemma("купить",1);
         int expected = 645;
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -119,7 +125,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getIntegerSQL(sql);
         int expected = 2;
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -128,7 +134,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getMaxFrequency();
         int expected = 645;
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -138,7 +144,7 @@ class DBConnectionTest extends TestCase {
         Set<Integer> expected = new HashSet<>();
         expected.add(1);
         assertEquals(actual,expected);
-
+        tearDown();
     }
 
     @Test
@@ -147,7 +153,7 @@ class DBConnectionTest extends TestCase {
         double actual = connection.getRank(1,2);
         double expected = 0.8;
         assertEquals(expected,actual,0.1);
-
+        tearDown();
     }
 
     @Test
@@ -161,7 +167,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getIntegerSQL(sql);
         int expected = 4;
         assertEquals(expected, actual);
-
+        tearDown();
     }
 
     @Test
@@ -177,6 +183,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getIntegerSQL(sql);
         int expected = 2;
         assertEquals(expected, actual);
+        tearDown();
     }
 
     @Test
@@ -186,7 +193,7 @@ class DBConnectionTest extends TestCase {
         assertEquals(page.getPath(),"/");
         assertEquals(page.getCode(),200);
         assertEquals(page.getHtmlCode(),"<html>Content</html>");
-
+        tearDown();
     }
 
 
@@ -198,6 +205,7 @@ class DBConnectionTest extends TestCase {
         int actual = connection.getIntegerSQL(sql);
         int expected = 0;
         assertEquals(expected, actual);
+        tearDown();
     }
 
 }

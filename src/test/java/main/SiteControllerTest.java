@@ -79,6 +79,13 @@ class SiteControllerTest extends TestCase {
         jdbcTemplate.execute(sql);
     }
 
+    @Override
+    protected void tearDown() throws Exception {
+        dbConnection.cleanDB();
+        String sql = "TRUNCATE TABLE search_engine.site";
+        jdbcTemplate.execute(sql);
+    }
+
     @Test
     void generateLemmaSet() throws Exception {
         setUp();
@@ -88,7 +95,7 @@ class SiteControllerTest extends TestCase {
         Set<Lemma> expectedLemmaSet = getLemmata();
 
         assertEquals(expectedLemmaSet,actualLemmaSet);
-
+        tearDown();
     }
 
     private Set<Lemma> getLemmata() {
@@ -140,6 +147,6 @@ class SiteControllerTest extends TestCase {
         int actual = pagesSet.stream().collect(Collectors.toList()).get(0);
         int expected = 2;
         assertEquals(expected,actual);
-
+        tearDown();
     }
 }
