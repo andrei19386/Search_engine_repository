@@ -56,9 +56,7 @@ class ReferenceFinderTest extends TestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        connection.cleanDB();
-        String sql = "TRUNCATE TABLE search_engine.site";
-        jdbcTemplate.execute(sql);
+        DBConnectionTest.cleanAllDB(connection,jdbcTemplate);
     }
 
     /**

@@ -61,11 +61,9 @@ class SiteControllerTest extends TestCase {
 
         dbConnection = new DBConnection(siteController, jdbcTemplate);
         siteController.setDbConnection(dbConnection);
-        dbConnection.cleanDB();
-        String sql = "TRUNCATE TABLE search_engine.site";
-        jdbcTemplate.execute(sql);
+        DBConnectionTest.cleanAllDB(dbConnection,jdbcTemplate);
 
-        sql = "INSERT INTO search_engine.site VALUES (1,'INDEXING','2022-04-22 16:17:35',NULL," +
+        String sql = "INSERT INTO search_engine.site VALUES (1,'INDEXING','2022-04-22 16:17:35',NULL," +
                 "'https://www.lutherancathedral.ru','Кафедраль')";
         jdbcTemplate.execute(sql);
         sql = "INSERT INTO search_engine.page VALUES (1,'/',200,'<html><body>мама мыла окно </body></html>',1)," +
@@ -81,9 +79,7 @@ class SiteControllerTest extends TestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        dbConnection.cleanDB();
-        String sql = "TRUNCATE TABLE search_engine.site";
-        jdbcTemplate.execute(sql);
+        DBConnectionTest.cleanAllDB(dbConnection,jdbcTemplate);
     }
 
     @Test

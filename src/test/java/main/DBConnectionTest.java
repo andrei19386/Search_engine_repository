@@ -57,10 +57,8 @@ class DBConnectionTest extends TestCase {
         siteController = new SiteController(siteRepository,fieldRepository,
                 pageRepository,lemmaRepository,indexRepository);
         connection = new DBConnection(siteController,jdbcTemplate);
-        connection.cleanDB();
-
-        String sql = "TRUNCATE TABLE search_engine.site";
-        jdbcTemplate.execute(sql);
+        cleanAllDB(connection,jdbcTemplate);
+        String sql;
 
         sql = "INSERT INTO search_engine.site VALUES (1,'INDEXING','2022-04-22 16:17:35',NULL," +
                 "'https://www.lutherancathedral.ru','Кафедраль')";
@@ -79,6 +77,10 @@ class DBConnectionTest extends TestCase {
 
     @Override
     protected void tearDown() throws Exception {
+        cleanAllDB(connection,jdbcTemplate);
+    }
+
+    protected static void cleanAllDB(DBConnection connection, JdbcTemplate jdbcTemplate) {
         connection.cleanDB();
         String sql = "TRUNCATE TABLE search_engine.site";
         jdbcTemplate.execute(sql);
