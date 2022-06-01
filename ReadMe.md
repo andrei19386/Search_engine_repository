@@ -9,8 +9,9 @@
  ## 3. Instruction.
 		To run the project locally, you need: Edit the application.yml file located in the root of the project for a list of sites to be searched. To do this, you need to change the content of the sites section, respecting the indents, as it was done in the source code. For example, you may write:
 
-		> - url: http://lenta.ru
-		> name: Lenta.ru
+		``` - url: http://lenta.ru
+		    name: Lenta.ru
+		```
 
 		Filling in all name, url entries is mandatory. It is recommended to increase the size of the maximum processing data packet max_allowed_packet to 41943040 in MySQL Workbench. To do this, go to the Server/Status and system variables menu of the MySQL Workbench. After that run the program in java for execution - run the main program: src/main/java/main/Main.java. Then open the browser and type into url line: http://localhost:8080/admin. On the statistics page you can see all information about sites and their status, for example:
 ![Statistics](https://github.com/andrei19386/Search_engine_repository/blob/master/statistics.jpg)
