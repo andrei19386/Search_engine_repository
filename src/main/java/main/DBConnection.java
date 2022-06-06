@@ -72,9 +72,9 @@ public class DBConnection {
     }
 
     /**
+     * Формирует SQL-запрос для добавления новой страницы в базу данных
      * @param page
      * @throws SQLException
-     * Формирует SQL-запрос для добавления новой страницы в базу данных
      */
     public  void formInsertQuery(Page page) throws SQLException {
 
@@ -104,9 +104,9 @@ public class DBConnection {
     }
 
     /**
+     * Возвращает значение типа Integer по результатам выполнения SQL-запроса
      * @param sql
      * @return
-     * Возвращает значение типа Integer по результатам выполнения SQL-запроса
      */
     protected int getIntegerSQL(String sql) {
         List<Integer> list = jdbcTemplate.queryForList(sql, Integer.class);
@@ -117,10 +117,10 @@ public class DBConnection {
     }
 
     /**
+     * Возвращает Набор уникальных значений типа Integer по результатам выполнения SQL-запроса
      * @param lemmaId
      * @return
      * @throws SQLException
-     * Возвращает Набор уникальных значений типа Integer по результатам выполнения SQL-запроса
      */
     public Set<Integer> getPagesId(int lemmaId) throws SQLException {
         Set<Integer> result = new HashSet<>();
@@ -132,11 +132,11 @@ public class DBConnection {
 
 
     /**
+     * Возвращает rank леммы на странице
      * @param index
      * @param id
      * @return
      * @throws SQLException
-     * Возвращает rank леммы на странице
      */
     public double getRank(int index, int id) throws SQLException {
         if(index == 0 || id == 0) {
@@ -151,10 +151,10 @@ public class DBConnection {
     }
 
     /**
+     * Формирует множественный Insert-запрос и вставляет леммы для текущей страницы
      * @param lemmaMap
      * @param siteId
      * @throws SQLException
-     * Формирует множественный Insert-запрос и вставляет леммы для текущей страницы
      */
     public void insertLemmas(Map<String, Integer> lemmaMap, int siteId) throws SQLException {
         if(lemmaMap.isEmpty()){
@@ -179,10 +179,10 @@ public class DBConnection {
     }
 
     /**
+     * Формирует множественный Insert-запрос и вставляет данные в таблицу index
      * @param indexMap
      * @param siteId
      * @throws SQLException
-     * Формирует множественный Insert-запрос и вставляет данные в таблицу index
      */
     public  void insertIndex(Map<Index, Double> indexMap, int siteId) throws SQLException {
         if(indexMap.isEmpty()){
@@ -218,9 +218,9 @@ public class DBConnection {
     }
 
     /**
+     * Формирует информацию типа Detailed для формирования ответа на HTTP-запрос по статистике главной страницы
      * @param total
      * @return
-     * Формирует информацию типа Detailed для формирования ответа на HTTP-запрос по статистике главной страницы
      */
     public List<Detailed> getDetaileds(Total total) {
         String sql = "SELECT COUNT(*) FROM search_engine.page";

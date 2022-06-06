@@ -144,9 +144,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
 
     /**
+     * Инициирует формирование и последующее запросов на добавление информации о леммах и индексах в Базу Данных
      * @param blocks - блоки в соответствии с таблицей field
      * @throws SQLException
-     * Инициирует формирование и последующее запросов на добавление информации о леммах и индексах в Базу Данных
      */
     private void formDB(List<Block> blocks) throws SQLException {
         Map<Index,Double> indexMap = new HashMap<>();
@@ -162,11 +162,11 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
+     * Функция формирует Map для вставки в таблицу index
      * @param indexMap заполняемая Map для текущей страницы для последующей вставки данных в таблицу index
      * @param lemmaMap Map из лемм текущей страницы для заполнения indexMap
      * @param blockWeight Весовой коэффициент блока в соответствии с таблицей field
      * @throws SQLException
-     * Функция формирует Map для вставки в таблицу index
      */
     private void formIndex(Map<Index,Double> indexMap, Map<String, Integer> lemmaMap, double blockWeight) throws SQLException {
         for(Map.Entry<String,Integer> entry: lemmaMap.entrySet()){
@@ -183,9 +183,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
+     * Возвращает блоки данных в соответствии с таблицей field с заданными весовыми коэффициентами
      * @param document
      * @return
-     * Возвращает блоки данных в соответствии с таблицей field с заданными весовыми коэффициентами
      */
     private List<Block> getBlocks(Document document) {//Получаем блоки и очищаем их от html-тегов
         List<Block> blocks = new ArrayList<>();
@@ -201,10 +201,10 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
 
     /**
-     * @param page
-     * @return
      * Функция формирует HTTP-запрос, подключается к странице и получает данные с нее.
      * Возвращает объект document для дальнейшей обработки
+     * @param page
+     * @return
      */
     private Document getStatusCode(Page page) {
         int code = 0;
@@ -226,9 +226,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
+     * Вспомогательная функция для корректной вставки escape-последовательностей с помощью SQL-запросов
      * @param str
      * @return
-     * Вспомогательная функция для корректной вставки escape-последовательностей с помощью SQL-запросов
      */
     private static String mysqlRealEscapeString(String str) {
         if (str == null) {
@@ -253,9 +253,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
 
     /**
+     * Непосредственно вставляет в объект page HTML-код страницы
      * @param document
      * @param page
-     * Непосредственно вставляет в объект page HTML-код страницы
      */
     private void getHTML(Document document, Page page)  {
 
@@ -271,9 +271,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
 
     /**
+     * Функция получает относительный адрес текущей страницы
      * @param node
      * @return
-     * Функция получает относительный адрес текущей страницы
      */
     public static String getPathName(String node) {
         String path = "";
@@ -285,9 +285,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
+     * Отладочная функция для отображения карты сайта
      * @param resultSet
      * @param taskList
-     * Отладочная функция для отображения карты сайта
      */
     private void resultFormation(List<String> resultSet, List<ReferenceFinder> taskList)  {
         List<String> resultList = new ArrayList<>();
@@ -308,9 +308,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
+     * Формирует список задач для их исполнения с помощью ForkJoin
      * @param children
      * @param taskList
-     * Формирует список задач для их исполнения с помощью ForkJoin
      */
     private void taskListFormation(List<String> children, List<ReferenceFinder> taskList) {
 
