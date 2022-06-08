@@ -44,7 +44,7 @@ public class DBConnection {
     }
 
     /**
-     * @return Возвращает Map из селекторов для обработки лемм страницы в соответствии с таблицей field
+     * @return - возвращает Map из селекторов для обработки лемм страницы в соответствии с таблицей field
      * @throws SQLException
      */
     public  Map<String,Double> getSelectors() throws SQLException {
@@ -73,7 +73,7 @@ public class DBConnection {
 
     /**
      * Формирует SQL-запрос для добавления новой страницы в базу данных
-     * @param page
+     * @param page - объект класса Page, соответствующий добавляемой странице в БД
      * @throws SQLException
      */
     public  void formInsertQuery(Page page) throws SQLException {
@@ -93,7 +93,7 @@ public class DBConnection {
     }
 
     /**
-     * @return Возвращает наибольшую частоту встречающихся лемм на всех индексированных сайтах. Это необходимо для
+     * @return - Возвращает наибольшую частоту встречающихся лемм на всех индексированных сайтах. Это необходимо для
      * выполнения в соответствии с ТЗ исключения из поискового запроса тех лемм,
      * которые встречаются чаще, чем определенный процент от наибольшей частоты
      * @throws SQLException
@@ -105,7 +105,7 @@ public class DBConnection {
 
     /**
      * Возвращает значение типа Integer по результатам выполнения SQL-запроса
-     * @param sql
+     * @param sql - исполняемый sql-запрос, возвращающий одно целое число
      * @return
      */
     protected int getIntegerSQL(String sql) {
@@ -118,7 +118,7 @@ public class DBConnection {
 
     /**
      * Возвращает Набор уникальных значений типа Integer по результатам выполнения SQL-запроса
-     * @param lemmaId
+     * @param lemmaId - идентификатор леммы в БД
      * @return
      * @throws SQLException
      */
@@ -133,8 +133,8 @@ public class DBConnection {
 
     /**
      * Возвращает rank леммы на странице
-     * @param index
-     * @param id
+     * @param index - идентификатор страницы
+     * @param id - идентификатор леммы
      * @return
      * @throws SQLException
      */
@@ -152,8 +152,8 @@ public class DBConnection {
 
     /**
      * Формирует множественный Insert-запрос и вставляет леммы для текущей страницы
-     * @param lemmaMap
-     * @param siteId
+     * @param lemmaMap - Map из лемм на данной странице для добавления в БД
+     * @param siteId - идентификатор сайта
      * @throws SQLException
      */
     public void insertLemmas(Map<String, Integer> lemmaMap, int siteId) throws SQLException {
@@ -180,8 +180,8 @@ public class DBConnection {
 
     /**
      * Формирует множественный Insert-запрос и вставляет данные в таблицу index
-     * @param indexMap
-     * @param siteId
+     * @param indexMap - Map из лемм на странице и их рангов для добавления в БД
+     * @param siteId - идентификатор сайта
      * @throws SQLException
      */
     public  void insertIndex(Map<Index, Double> indexMap, int siteId) throws SQLException {
@@ -219,7 +219,8 @@ public class DBConnection {
 
     /**
      * Формирует информацию типа Detailed для формирования ответа на HTTP-запрос по статистике главной страницы
-     * @param total
+     * @param total - объект класса Total, необходим для формирования заданной структуры данных в соответствии
+     * с техническим заданием
      * @return
      */
     public List<Detailed> getDetaileds(Total total) {

@@ -266,7 +266,7 @@ public class SiteController {
     /**
      * Функция изменяет статус индексации сайта при достижении количества завершенных потоков полного
      * количества сайтов в конфигурационном файле
-     * @param count
+     * @param count - количество сайтов в конфигурационном файле
      */
     private void areAllIndexedByCount(AtomicInteger count) {
         if (count.get() == siteList.size()) {
@@ -299,7 +299,7 @@ public class SiteController {
 
     /**
      * Осуществляет очистку БД для заданной страницы и проводит ее индексацию
-     * @param url
+     * @param url - адрес страницы на сайте
      * @return
      */
     @PostMapping("/indexPage")
@@ -344,8 +344,8 @@ public class SiteController {
     /**
      * Функция используется при инициализации страницы статистики. Очищает из индекса те сайты, которые
      * отсутствуют (были удалены) в конфигурационном файле
-     * @param url
-     * @param site
+     * @param url - адрес страницы на сайте
+     * @param site - объект класса Site, соответствующий обрабатываемому сайту
      */
     private void deleteOldEntries(String url, Site site) {
         try {
@@ -360,12 +360,11 @@ public class SiteController {
      * Проверяет, входит ли введенный url в множество, на которое распространена индексация сайта.
      * Если доменнное имя соответствует одному из сайтов, возвращает объект Site, соответствующий доменному имени.
      * В противоположном случае возвращает null
-     * @param url
-     * @param res
+     * @param url - адрес страницы на сайте
      * @return
      *
      */
-    private Site checkUrl(String url, boolean res) {
+    private Site checkUrl(String url) {
 
         Site siteElement = null;
 
@@ -416,10 +415,10 @@ public class SiteController {
 
     /**
      * Осуществляет интерфейс взаимодействия с пользователем страницы поиска
-     * @param query
-     * @param site
-     * @param offset
-     * @param limit
+     * @param query - поисковый запрос на русском языке
+     * @param site - адрес сайта, на котором происходит поиск (или поиск по всем сайтам в конфигурационном файле)
+     * @param offset - параметр, необходимый для постраничного вывода результатов
+     * @param limit - количество результатов на странице
      * @return
      * @throws SQLException
      */
@@ -469,8 +468,8 @@ public class SiteController {
 
     /**
      * Реализует поиск по всем сайтам
-     * @param query
-     * @param maxFrequency
+     * @param query - поисковый запрос
+     * @param maxFrequency - максимальная частота лемм в БД
      * @return
      * @throws SQLException
      */
@@ -496,7 +495,7 @@ public class SiteController {
 
     /**
      * Определяет объект Site по его доменному имени
-     * @param siteName
+     * @param siteName - имя сайта
      * @return
      */
     private Site findSite(String siteName){
@@ -511,9 +510,9 @@ public class SiteController {
 
     /**
      * Осуществляет поиск по заданному сайту
-     * @param query
-     * @param site
-     * @param maxFrequency
+     * @param query - поисковый запрос
+     * @param site - сайт
+     * @param maxFrequency - максимальная частота лемм в БД
      * @return
      * @throws SQLException
      */
@@ -544,9 +543,9 @@ public class SiteController {
 
     /**
      * Генерирует набор уникальных лемм, соответствующих поисковому запросу
-     * @param words
-     * @param maxFrequency
-     * @param siteId
+     * @param words - массив слов
+     * @param maxFrequency - максимальная частота лемм в БД
+     * @param siteId - идентификатор сайта
      * @return
      * @throws SQLException
      */
@@ -579,7 +578,7 @@ public class SiteController {
 
     /**
      * Возвращает индексы страниц в порядке поиска наиболее редко встречающихся лемм
-     * @param lemmaSet
+     * @param lemmaSet - набор уникальных лемм
      * @return
      * @throws SQLException
      */
@@ -602,7 +601,7 @@ public class SiteController {
 
     /**
      * Возвращает индексы страниц, на которых встречается данная лемма
-     * @param lemma
+     * @param lemma - искомая лемма
      * @return
      * @throws SQLException
      */
@@ -614,7 +613,7 @@ public class SiteController {
 
     /**
      * Удаляет из siteRepository все сайты, которых нет в конфигурационном файле
-     * @param sites
+     * @param sites - список сайтов в конфигурационном файле
      */
     private void deleteOldSites(List<YAMLConfig.SiteRead> sites) {
         Iterable<Site> siteIterable = siteRepository.findAll();
@@ -635,7 +634,7 @@ public class SiteController {
 
     /**
      * Добавляет в репозиторий или обновляет в нем информацию о сайтах в конфигурационном файле
-     * @param sites
+     * @param sites - список сайтов в конфигурационном файле
      */
     private void addOrUpdateInfo(List<YAMLConfig.SiteRead> sites) {
         for(YAMLConfig.SiteRead site : sites) {
@@ -660,9 +659,9 @@ public class SiteController {
 
     /**
      * Функция проверяет, существует ли сайт в конфигурационном файле
-     * @param site
-     * @param exists
-     * @param site1
+     * @param site - сайт из конфигурационного файла
+     * @param exists - возвращает true, если сайт существует в конфигурационном файле и false в противном случае
+     * @param site1 - сайт из БД
      * @return
      */
     private boolean isExists(YAMLConfig.SiteRead site, boolean exists, Site site1) {
@@ -698,7 +697,7 @@ public class SiteController {
 
     /**
      * Добавляет слеш, если в адресе в конце имени он отсутствует, и ничего не добавляет в противоположном случае
-     * @param url
+     * @param url - адрес страницы
      * @return
      */
     private static String slashAdding(String url) {
@@ -711,7 +710,7 @@ public class SiteController {
 
     /**
      * Осуществляет сортировку страниц по абсолютной релевантности
-     * @param relevances
+     * @param relevances - список объектов Relevance для сортировки
      * @throws SQLException
      */
     private static void sortByRelevances(List<Relevance> relevances) throws SQLException {
@@ -732,9 +731,9 @@ public class SiteController {
 
 
     /**
-     * Осуществляет вычисление суммарный rank всех лемм на странице с текущим id
-     * @param index
-     * @param lemmaSet
+     * Осуществляет вычисление суммарный rank всех лемм на странице с текущим идентификатором
+     * @param index - идентификатор страницы
+     * @param lemmaSet - набор уникальных лемм
      * @return
      * @throws SQLException
      */
@@ -748,9 +747,9 @@ public class SiteController {
 
     /**
      * Осуществляетс генерации ответа на поисковый запрос (сниппеты, расчет релевантностей и т.д.)
-     * @param relevances
-     * @param site
-     * @param lemmaSet
+     * @param relevances - список объектов Relevances
+     * @param site - сайт
+     * @param lemmaSet - набор уникальных лемм
      * @return
      * @throws SQLException
      */
@@ -787,8 +786,8 @@ public class SiteController {
 
     /**
      * Получает сниппет для данной страницы, полученной по данному поисковому запросу
-     * @param doc
-     * @param lemmaSet
+     * @param doc - страница-объект jsoup
+     * @param lemmaSet - набор уникальных лемм
      * @return
      */
     private static String getSnippet(Document doc, Set<Lemma> lemmaSet) {
@@ -810,9 +809,9 @@ public class SiteController {
 
     /**
      * Вспомогательная функция. Нужна для построения результирующего предложения из сниппетов
-     * @param indexes
-     * @param builder
-     * @param nearestWords
+     * @param indexes - список индексов слов на странице, соответствующих поисковому запросу
+     * @param builder - вспомогательный объект для конкатенации строк
+     * @param nearestWords - массив соседних слов
      */
     private static void synthesisSnippet(List<Integer> indexes, StringBuilder builder, String[] nearestWords) {
         int lowBoundary;
@@ -844,9 +843,9 @@ public class SiteController {
 
     /**
      * Добавляет в сниппет теги выделения найденных слов жирным шрифтом
-     * @param lemmas
-     * @param text
-     * @param indexes
+     * @param lemmas - список лемм
+     * @param text - текст, в который добавляются теги
+     * @param indexes - индексы слов, соответствующих поисковому запросу
      * @return
      */
     private static String addHTMLTages(ArrayList<String> lemmas, String text,
@@ -891,7 +890,7 @@ public class SiteController {
 
     /**
      * Проверяет, проиндексирован ли данный сайт
-     * @param site
+     * @param site - сайт
      * @return
      */
     private boolean isSiteIndexed(Site site){

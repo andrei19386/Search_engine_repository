@@ -47,7 +47,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
 
     /**
-     * @param document
+     * @param document - параметр, соответствующий странице, получаемый и обрабатываемый с помощью библиотеки jsoup
      * @return Фунцкия возвращает список дочерних узлов, каждый узел уникальный
      */
     public List<String> getChildren(Document document) {
@@ -70,7 +70,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     }
 
     /**
-     * @param node Текущий узел
+     * @param node - Текущий узел
      * @param childSet - Формируемый набор уникальных узлов
      * @param element - Ссылочный элемент с текущей страницы
      */
@@ -163,9 +163,9 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Функция формирует Map для вставки в таблицу index
-     * @param indexMap заполняемая Map для текущей страницы для последующей вставки данных в таблицу index
-     * @param lemmaMap Map из лемм текущей страницы для заполнения indexMap
-     * @param blockWeight Весовой коэффициент блока в соответствии с таблицей field
+     * @param indexMap - заполняемая Map для текущей страницы для последующей вставки данных в таблицу index
+     * @param lemmaMap - Map из лемм текущей страницы для заполнения indexMap
+     * @param blockWeight - Весовой коэффициент блока в соответствии с таблицей field
      * @throws SQLException
      */
     private void formIndex(Map<Index,Double> indexMap, Map<String, Integer> lemmaMap, double blockWeight) throws SQLException {
@@ -184,7 +184,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Возвращает блоки данных в соответствии с таблицей field с заданными весовыми коэффициентами
-     * @param document
+     * @param document - параметр, соответствующий странице, получаемый и обрабатываемый с помощью библиотеки jsoup
      * @return
      */
     private List<Block> getBlocks(Document document) {//Получаем блоки и очищаем их от html-тегов
@@ -203,7 +203,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
     /**
      * Функция формирует HTTP-запрос, подключается к странице и получает данные с нее.
      * Возвращает объект document для дальнейшей обработки
-     * @param page
+     * @param page - объект класса Page, соответствующий странице
      * @return
      */
     private Document getStatusCode(Page page) {
@@ -227,7 +227,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Вспомогательная функция для корректной вставки escape-последовательностей с помощью SQL-запросов
-     * @param str
+     * @param str - исзодная строка
      * @return
      */
     private static String mysqlRealEscapeString(String str) {
@@ -254,8 +254,8 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Непосредственно вставляет в объект page HTML-код страницы
-     * @param document
-     * @param page
+     * @param document - страница, получаемая и обрабатываемая библиотекой jsoup
+     * @param page - объект класса Page, соответствующий обрабатываемой странице
      */
     private void getHTML(Document document, Page page)  {
 
@@ -272,7 +272,7 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Функция получает относительный адрес текущей страницы
-     * @param node
+     * @param node - абсолютный http-адрес страницы
      * @return
      */
     public static String getPathName(String node) {
@@ -286,8 +286,8 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Отладочная функция для отображения карты сайта
-     * @param resultSet
-     * @param taskList
+     * @param resultSet - набор уникальных результирующих элементов
+     * @param taskList - список задач на выполнение
      */
     private void resultFormation(List<String> resultSet, List<ReferenceFinder> taskList)  {
         List<String> resultList = new ArrayList<>();
@@ -309,8 +309,8 @@ public class ReferenceFinder extends RecursiveTask<List<String>> {
 
     /**
      * Формирует список задач для их исполнения с помощью ForkJoin
-     * @param children
-     * @param taskList
+     * @param children - список дочерних узлов
+     * @param taskList - список задач для выполнения
      */
     private void taskListFormation(List<String> children, List<ReferenceFinder> taskList) {
 

@@ -17,8 +17,8 @@ public class Lemmatizer {
 
     /**
      * Разбивает строку на слова и формирует Map для лемм с указанием частоты их встречаемости
-     * @param string
-     * @param lemmaMap
+     * @param string - исходная строка
+     * @param lemmaMap - результирующая Map из лемм с указанием количества их на странице
      */
     public  void analyzer(String string,Map<String,Integer> lemmaMap) {
         String[] words = stringToWords(string);
@@ -30,8 +30,8 @@ public class Lemmatizer {
 
     /**
      * Непосредственно добавляет лемму в Map
-     * @param lemmaString
-     * @param lemmaMap
+     * @param lemmaString - строка-лемма
+     * @param lemmaMap - Map из лемм с указанием количества их на странице
      */
     private void putIntoMap(String lemmaString, Map<String,Integer> lemmaMap) {
 
@@ -51,8 +51,8 @@ public class Lemmatizer {
 
     /**
      * Опрелеляет нормальную форму леммы
-     * @param word
-     * @return
+     * @param word - исходное слово на странице
+     * @return - возвращает List<String> всех нормальных форм леммы
      */
     public List<String> getLemmas(String word) {
         if(luceneMorph == null) {
@@ -72,8 +72,8 @@ public class Lemmatizer {
 
     /**
      * Проверяет, является ли слово набранным по-русски
-     * @param word
-     * @return
+     * @param word - исходное слово
+     * @return - возвращает true, если слово набрано по-русски и false в противном случае
      */
     public boolean checkWord(String word) {
         if(!word.matches("[-а-яА-Я]+")) {
@@ -84,8 +84,8 @@ public class Lemmatizer {
 
     /**
      * Проверяет, является ли слово служебным (частица, союз, междометие, предлог)
-     * @param word
-     * @return
+     * @param word - исходное слово
+     * @return возвращает true, если слово является служебным и false в противном случае
      */
     public boolean isOfficialWord(String word) {
         String wordLower = word.toLowerCase(Locale.ROOT);
@@ -112,8 +112,8 @@ public class Lemmatizer {
     /**
      * Функция исключает знаки препинания из предложения для разбиения строки на слова и дальнейшего
      * поиска лемм
-     * @param string
-     * @return words
+     * @param string - исходная строка
+     * @return words - результирующий массив слов (игнорируются знаки препинания)
      */
     public static String[] stringToWords(String string){
         String newString = string.replaceAll("[.,():?/+©&%#@!;—]","");
@@ -124,8 +124,8 @@ public class Lemmatizer {
 
     /**
      * Функция разбиения строки на слова по разделительному символу - пробелу
-     * @param string
-     * @return words
+     * @param string - исходная строка
+     * @return words - результирующий массив слов
      */
     public static String[] stringToWordsSimple(String string){
         String newString = string.replaceAll("[\n]"," ");
