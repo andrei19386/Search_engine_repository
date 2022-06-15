@@ -36,3 +36,4 @@
         	If you want to limit the search to one site, you can specify in the top field instead of "All Sites" a specific site
         	from the list of known sites to search.
         	If the site is not indexed, a corresponding diagnostic message will be displayed.
+		There is a demonstration of the program in the file Demo.mp4.

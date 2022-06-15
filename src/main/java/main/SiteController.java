@@ -308,7 +308,7 @@ public class SiteController {
 
         userAgent = myConfig.getUserAgent();
 
-        Site site = checkUrl(url, false);
+        Site site = checkUrl(url);
 
         boolean res = site != null;
 
