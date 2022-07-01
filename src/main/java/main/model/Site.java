@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Table(name = "site")
 public class Site {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Enumerated(EnumType.STRING)
