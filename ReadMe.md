@@ -27,11 +27,11 @@
         	After that run the program in java for execution - run the main program: src/main/java/main/Main.java.
         	Then open the browser and type into url line: http://localhost:8080/admin.
         	On the statistics page you can see all information about sites and their status, for example:
-![Statistics](https://github.com/andrei19386/Search_engine_repository/blob/master/statistics.jpg)
-        	If you need detailed information, you should click on the triangle on the right side of the site status: ![Detailed](https://github.com/andrei19386/Search_engine_repository/blob/master/detailed.jpg)
+![Statistics](https://github.com/andrei19386/Search_engine_repository/blob/master/src/main/resources/statistics.jpg)
+        	If you need detailed information, you should click on the triangle on the right side of the site status: ![Detailed](https://github.com/andrei19386/Search_engine_repository/blob/master/src/main/resources/detailed.jpg)
         	Go to indexation tab. Run full site indexing. Once indexing is complete, the "Stop Indexation" button will change to "Start Indexation". Go to the search tab and type the search query into the input field, after which - type the Search button.
          	For example,
-![Search](https://github.com/andrei19386/Search_engine_repository/blob/master/search.jpg)
+![Search](https://github.com/andrei19386/Search_engine_repository/blob/master/src/main/resources/search.jpg)
 
         	If you want to limit the search to one site, you can specify in the top field instead of "All Sites" a specific site
         	from the list of known sites to search.
